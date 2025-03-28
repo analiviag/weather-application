@@ -3,10 +3,11 @@ let current = {};
 let today = {};
 
 const formInput = document.querySelector("#search-form");
+const forecastContainer = document.querySelector("#forecast .row");
 
 async function getData(city) {
   const apiKey = "3306a70115f247b6ae7134721252403";
-  const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5&aqi=no&alerts=no
+  const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no
 `;
   try {
     const response = await fetch(apiUrl);
@@ -16,8 +17,9 @@ async function getData(city) {
     today = data.location;
 
     displayData(current, today);
+    displayForecast();
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data", error);
     alert("City not found, or there was a network error");
   }
 }
@@ -38,12 +40,35 @@ function displayData(currentData, todayData) {
   windElement.innerHTML = Math.round(currentData.wind_kph);
   dateTimeElement.innerHTML = todayData.localtime;
 
-  const iconCode = currentData.condition.code;
-  const isDay = currentData.is_day;
-  const iconPrefix = isDay ? "day" : "night";
-  const iconUrl = `//cdn.weatherapi.com/weather/64x64/${iconPrefix}/${iconCode}.png`;
+  const iconUrl = currentData.condition.icon;
 
   iconElement.setAttribute("src", iconUrl);
+}
+
+function displayForecast() {
+  forecastContainer.innerHTML = forecast
+    .map((forecastDay) => {
+      const dayName = new Date(forecastDay.date).toLocaleDateString("en-US", {
+        weekday: "short",
+      });
+      const iconUrlForecast = forecastDay.day.condition.icon;
+      const minTemp = Math.round(forecastDay.day.mintemp_c);
+      const maxTemp = Math.round(forecastDay.day.maxtemp_c);
+
+      return `
+   <div class="col">
+   <p class="day-of-week">${dayName}</p>
+   <img src="${iconUrlForecast}" alt="weather Icon" />
+   <div class="min-max-container">
+   <div class="row row-cols-2 gx-0">
+   <p class="col p-3">${minTemp}°C</p>
+   <strong class="col p-3">${maxTemp}°C</strong>
+   </div>
+   </div>
+   </div>
+   `;
+    })
+    .join("");
 }
 
 formInput.addEventListener("submit", (event) => {
