@@ -1,5 +1,10 @@
+:root {
+  --primary-color: white;
+  --secondary-color: beige;
+  --font-family: Poppins;
+}
 .body {
-  font-family: Poppins;
+  font-family: var(--font-family);
   min-height: 100vh;
   margin: 0;
 }
@@ -17,6 +22,11 @@
   border: 1px solid #dadde1;
   border-radius: 5px;
   margin: 0 auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+    url("../images/bluesky.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .weather-app-wrapper {
@@ -25,7 +35,7 @@
 }
 
 ul {
-  margin: 0;
+  margin: 0 20px;
   padding: 0;
 }
 
@@ -33,14 +43,18 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
-  color: #5e5e5e;
+  color: var(--secondary-color);
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 400;
   line-height: 19px;
 }
 
 li:first-letter {
   text-transform: capitalize;
+}
+
+.units {
+  color: var(--primary-color);
 }
 
 .weather-temperature img {
@@ -50,7 +64,7 @@ li:first-letter {
 }
 
 .weather-temperature strong {
-  color: #181c14;
+  color: var(--primary-color);
   font-size: 64px;
   line-height: 1;
   font-weight: 400;
@@ -65,22 +79,25 @@ li:first-letter {
 .weather-forecast {
   margin-top: 50px 0 0 -10px;
   text-align: center;
-  color: #5e5e5e;
+  color: var(--secondary-color);
   font-weight: 200;
+  background: rgba(28, 111, 187, 0.5);
+  padding: 10px;
+  border-radius: 30px;
 }
 
 .day-of-week {
   font-weight: 600;
-  color: #181c14;
+  color: var(--primary-color);
 }
 
 .min-max-container {
   margin: 0 70px;
-  color: #181c14;
+  color: var(--primary-color);
 }
 
 #current-city {
-  color: #181c14;
+  color: var(--primary-color);
   margin-left: 20px;
   text-transform: capitalize;
 }
@@ -94,7 +111,7 @@ li:first-letter {
   align-items: center;
   justify-content: center;
   padding-bottom: 20px;
-  margin-top: -60px;
+  margin-top: -30px;
 }
 
 @media (max-width: 768px) {
