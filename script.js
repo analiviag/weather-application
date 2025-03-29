@@ -16,7 +16,7 @@ async function getData(city) {
     current = data.current;
     today = data.location;
 
-    displayData(current, today);
+    displayData(current, today, forecast[0]);
     displayForecast();
   } catch (error) {
     console.error("Error fetching data", error);
@@ -24,7 +24,7 @@ async function getData(city) {
   }
 }
 
-function displayData(currentData, todayData) {
+function displayData(currentData, todayData, forecastDay) {
   let cityElement = document.querySelector("#current-city");
   let iconElement = document.querySelector("#icon");
   let temperatureElement = document.querySelector("#temperature");
@@ -32,6 +32,10 @@ function displayData(currentData, todayData) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let dateTimeElement = document.querySelector("#date-time");
+  let highElement = document.querySelector("#high");
+  let lowElement = document.querySelector("#low");
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let precipitationElement = document.querySelector("#precipitation");
 
   cityElement.innerHTML = todayData.name;
   temperatureElement.innerHTML = Math.round(currentData.temp_c);
@@ -39,6 +43,16 @@ function displayData(currentData, todayData) {
   humidityElement.innerHTML = currentData.humidity;
   windElement.innerHTML = Math.round(currentData.wind_kph);
   dateTimeElement.innerHTML = todayData.localtime;
+  highElement.innerHTML = `<strong>${Math.round(
+    forecastDay.day.maxtemp_c
+  )}</strong`;
+  lowElement.innerHTML = `<strong>${Math.round(
+    forecastDay.day.mintemp_c
+  )}</strong>`;
+  feelsLikeElement.innerHTML = `<strong>${Math.round(
+    currentData.feelslike_c
+  )}</strong>`;
+  precipitationElement.innerHTML = forecastDay.day.daily_chance_of_rain;
 
   const iconUrl = currentData.condition.icon;
 

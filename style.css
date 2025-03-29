@@ -53,6 +53,14 @@ li:first-letter {
   text-transform: capitalize;
 }
 
+ul li:first-child {
+  margin-bottom: 5px;
+}
+
+.high .low {
+  font-weight: bold;
+}
+
 .units {
   color: var(--primary-color);
 }
