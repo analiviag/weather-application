@@ -60,10 +60,18 @@ function displayData(currentData, todayData, forecastDay) {
 }
 
 function displayForecast() {
+  const today = new Date().toISOString().split("T")[0];
+  console.log("Today (ISO):", today);
+
   forecastContainer.innerHTML = forecast
+    .filter((forecastDay) => forecastDay.date >= today)
     .map((forecastDay) => {
-      const dayName = new Date(forecastDay.date).toLocaleDateString("en-US", {
+      console.log("Forecast Date:", forecastDay.date);
+
+      const date = new Date(forecastDay.date + "T00:00:00Z");
+      const dayName = date.toLocaleDateString("en-US", {
         weekday: "short",
+        timeZone: "UTC",
       });
       const iconUrlForecast = forecastDay.day.condition.icon;
       const minTemp = Math.round(forecastDay.day.mintemp_c);

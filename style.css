@@ -22,7 +22,7 @@
   border: 1px solid #dadde1;
   border-radius: 5px;
   margin: 0 auto;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+  background-image: linear-gradient(rgba(60, 64, 67, 0.1), rgba(0, 0, 0, 0.2)),
     url("../images/bluesky.jpg");
   background-size: cover;
   background-position: center;
@@ -89,7 +89,7 @@ ul li:first-child {
   text-align: center;
   color: var(--secondary-color);
   font-weight: 200;
-  background: rgba(28, 111, 187, 0.5);
+  background: rgba(171, 180, 189, 0.5);
   padding: 10px;
   border-radius: 30px;
 }
