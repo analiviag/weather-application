@@ -2,6 +2,9 @@
 
 Welcome to the Weather App! This app allows you to check the weather forecast for different locations.
 
+## Problems the App aims to solve
+
+
 ## Features
 * Displays current weather conditions (temperature, description, humidity, wind, precipitation, feels like).
 * Provides a 3-day weather forecast.
