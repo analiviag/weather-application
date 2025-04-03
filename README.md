@@ -5,7 +5,7 @@ Welcome to the Weather App! This app allows you to check the weather forecast fo
 Get weather information using weatherapi.com.
 
 ## Usage
-Enter a city in the search bar to get the weather information.
+Enter a city in the search bar to get the weather information for the next 3 days.
 
 ## Contributing
 1. Fork the repository.
