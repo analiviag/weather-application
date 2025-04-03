@@ -3,6 +3,9 @@
 Welcome to the Weather App! This app allows you to check the weather forecast for different locations.
 
 ## Problems the App aims to solve
+* User's can get current conditions and forecast in one place.
+* It prioritizes essential weather data with it's simple and focused interface.
+* 
 
 
 ## Features
