@@ -22,7 +22,7 @@
   border: 1px solid #dadde1;
   border-radius: 5px;
   margin: 0 auto;
-  background-image: linear-gradient(rgba(60, 64, 67, 0.1), rgba(0, 0, 0, 0.2)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)),
     url("../images/bluesky.jpg");
   background-size: cover;
   background-position: center;
