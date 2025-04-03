@@ -4,9 +4,8 @@ let today = {};
 
 const formInput = document.querySelector("#search-form");
 const forecastContainer = document.querySelector("#forecast .row");
-
+const apiKey = "3306a70115f247b6ae7134721252403";
 async function getData(city) {
-  const apiKey = "3306a70115f247b6ae7134721252403";
   const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no
 `;
   try {
@@ -100,3 +99,44 @@ formInput.addEventListener("submit", (event) => {
   getData(city);
   cityInputElement.value = "";
 });
+
+async function getCityFromCoordinates(latitude, longitude) {
+  const apiUrlCoord = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}`;
+
+  try {
+    const response = await fetch(apiUrlCoord);
+    const data = await response.json();
+
+    return data.location.name;
+  } catch (error) {
+    console.error("Error getting city from coordinates: ", error);
+    return null;
+  }
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const city = await getCityFromCoordinates(latitude, longitude);
+
+        if (city) {
+          getData(city);
+        } else {
+          getData("Vancouver");
+        }
+      },
+      (error) => {
+        console.error("Error getting location: ", error);
+        getData("Vancouver");
+      }
+    );
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+    getData("Vancouver");
+  }
+}
+
+window.addEventListener("load", getLocation);
