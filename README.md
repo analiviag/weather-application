@@ -1,10 +1,22 @@
-# weather forecast app
+# Weather Forecast App
 
 Welcome to the Weather App! This app allows you to check the weather forecast for different locations.
 
-## Features
+## Problems the App aims to solve
+* User's can get current conditions and forecast in one place.
+* It prioritizes essential weather data with it's simple and focused interface.
+* 
 
-Get weather information using weatherapi.com.
+
+## Features
+* Displays current weather conditions (temperature, description, humidity, wind, precipitation, feels like).
+* Provides a 3-day weather forecast.
+* Uses the WeatherAPI to fetch weather data.
+* Displays the user's current city weather on page load, if permissions are granted.
+* User-friendly interface using HTML, CSS, and JavaScript.
+
+  <img width="814" alt="Screenshot 2025-04-03 at 16 56 07" src="https://github.com/user-attachments/assets/1e746f36-7b1c-4075-a40d-ae5630e109c8" />
+
 
 ## Usage
 
