@@ -1,10 +1,13 @@
 let forecast = [];
 let current = {};
 let today = {};
+let locationRequested = false;
 
 const formInput = document.querySelector("#search-form");
 const forecastContainer = document.querySelector("#forecast .row");
+const cityInputElement = document.querySelector("#formGroupExampleInput");
 const apiKey = "3306a70115f247b6ae7134721252403";
+
 async function getData(city) {
   const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no
 `;
@@ -60,13 +63,10 @@ function displayData(currentData, todayData, forecastDay) {
 
 function displayForecast() {
   const today = new Date().toISOString().split("T")[0];
-  console.log("Today (ISO):", today);
 
   forecastContainer.innerHTML = forecast
     .filter((forecastDay) => forecastDay.date >= today)
     .map((forecastDay) => {
-      console.log("Forecast Date:", forecastDay.date);
-
       const date = new Date(forecastDay.date + "T00:00:00Z");
       const dayName = date.toLocaleDateString("en-US", {
         weekday: "short",
@@ -94,7 +94,7 @@ function displayForecast() {
 
 formInput.addEventListener("submit", (event) => {
   event.preventDefault();
-  const cityInputElement = document.querySelector("#formGroupExampleInput");
+
   const city = cityInputElement.value;
   getData(city);
   cityInputElement.value = "";
@@ -139,4 +139,12 @@ function getLocation() {
   }
 }
 
-window.addEventListener("load", getLocation);
+cityInputElement.addEventListener("focus", () => {
+  if (!locationRequested) {
+    alert("The app would like to use your location to show local weather.");
+    getLocation();
+    locationRequested = true;
+  }
+});
+
+getData("Vancouver");

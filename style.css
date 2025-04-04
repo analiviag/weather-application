@@ -67,8 +67,8 @@ ul li:first-child {
 
 .weather-temperature img {
   margin: -10px 0 5px 0;
-  height: 90px;
-  width: 90px;
+  height: 64px;
+  width: 64px;
 }
 
 .weather-temperature strong {
