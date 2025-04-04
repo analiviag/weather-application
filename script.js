@@ -8,6 +8,8 @@ const forecastContainer = document.querySelector("#forecast .row");
 const cityInputElement = document.querySelector("#formGroupExampleInput");
 const apiKey = "3306a70115f247b6ae7134721252403";
 
+// The API website is:https://www.weatherapi.com/
+
 async function getData(city) {
   const apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=no
 `;
@@ -25,6 +27,8 @@ async function getData(city) {
     alert("City not found, or there was a network error");
   }
 }
+
+// Function to select the elements in HTML to modify with current data
 
 function displayData(currentData, todayData, forecastDay) {
   let cityElement = document.querySelector("#current-city");
@@ -61,6 +65,8 @@ function displayData(currentData, todayData, forecastDay) {
   iconElement.setAttribute("src", iconUrl);
 }
 
+// Function that displays current data for the forecast
+
 function displayForecast() {
   const today = new Date().toISOString().split("T")[0];
 
@@ -92,6 +98,8 @@ function displayForecast() {
     .join("");
 }
 
+// Gets the city the user inputs
+
 formInput.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -99,6 +107,8 @@ formInput.addEventListener("submit", (event) => {
   getData(city);
   cityInputElement.value = "";
 });
+
+// Gets the city coordinates for the API
 
 async function getCityFromCoordinates(latitude, longitude) {
   const apiUrlCoord = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}`;
@@ -113,6 +123,8 @@ async function getCityFromCoordinates(latitude, longitude) {
     return null;
   }
 }
+
+// Outputs user's location and defaults to Vancouver on page load
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -139,6 +151,8 @@ function getLocation() {
   }
 }
 
+// Asks the user to give permissions to access their location, and make sure this happens only once per page load
+
 cityInputElement.addEventListener("focus", () => {
   if (!locationRequested) {
     alert("The app would like to use your location to show local weather.");
@@ -146,5 +160,7 @@ cityInputElement.addEventListener("focus", () => {
     locationRequested = true;
   }
 });
+
+// Fallback to Vancouver if they don't grant permissions
 
 getData("Vancouver");
