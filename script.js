@@ -89,7 +89,7 @@ function displayForecast() {
    <div class="min-max-container">
    <div class="row row-cols-2 gx-0">
    <p class="col p-3">${minTemp}°C</p>
-   <strong class="col p-3">${maxTemp}°C</strong>
+   <p class="col p-3">${maxTemp}°C</p>
    </div>
    </div>
    </div>
