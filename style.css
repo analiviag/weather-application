@@ -104,10 +104,6 @@ ul li:first-child {
   color: var(--primary-color);
 }
 
-.max-temp {
-  font-weight: 700;
-}
-
 #current-city {
   color: var(--primary-color);
   margin-left: 20px;
