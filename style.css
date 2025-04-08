@@ -104,6 +104,10 @@ ul li:first-child {
   color: var(--primary-color);
 }
 
+.max-temp {
+  font-weight: 400;
+}
+
 #current-city {
   color: var(--primary-color);
   margin-left: 20px;
@@ -151,5 +155,9 @@ ul li:first-child {
 
   .signature {
     margin-top: 30px;
+  }
+
+  .btn {
+    margin-top: 20px;
   }
 }
